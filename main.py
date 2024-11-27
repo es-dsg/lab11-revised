@@ -45,25 +45,28 @@ def check_dict(key, dict):
 def main():
     pass
 main()
-build_dict("database.txt")
-while(True):
-    print("Let's review your flashcards!")
-    for key in dict:
-        print("Question:" + key)
-        input("Press Enter to see the answer.")
-        print("Answer:"+ dict.get(key,"default"))
+def main():
+    pass
+main()
+flashcards = build_dict("database.txt")
+print("Let's review your flashcards!")
 
-    review = input("\nEnd of Deck. Redo all cards?(Y/N):")
-    if review=="Y":
-        True
-    elif review =="N":
-        break
+redo = "Y"
+while redo == "Y" or redo == "y":
+    for pair in flashcards.items(): #makes a tuple of questions and answers
+        question, answer = pair
+        print("Question:" + question)
+        input("Press Enter to see the answer.")
+        print("Answer:"+ answer)
+        input("Press enter for the next card.")
+
+    redo = input("\nEnd of Deck. Redo all cards?(Y/N):")
 
 print("Question Review time.")
-while(True):
-    key= input("Enter question(stop to end):")
-    if key=="stop":
-        print("End of program.")
-        break
-    else:
-        print(check_dict(key, dict))
+question = input("Enter question(stop to end):")
+while(question != "stop"):
+    print(check_dict(question, dict))
+    question = input("Enter question(stop to end):")
+
+print ("End of program.")
+
